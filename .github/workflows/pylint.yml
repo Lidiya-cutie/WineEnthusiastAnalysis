@@ -8,6 +8,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Clear cache
+        run: |
+          rm -rf ~/.cache/pylint
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
