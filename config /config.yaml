@@ -1,0 +1,17 @@
+document_analysis:
+  ocr:
+    model_path: "models/document_analysis/ocr_model/"
+    lang: "eng"
+    preprocess: true
+    threshold: 0.8
+    gpu: true
+  nlp:
+    model_path: "models/document_analysis/document_classifier.pt"
+    task: "classification"
+    batch_size: 32
+    max_seq_length: 512
+    use_gpu: true
+
+comet:
+  use_comet: true
+  config_path: "config/comet_config.yaml"
