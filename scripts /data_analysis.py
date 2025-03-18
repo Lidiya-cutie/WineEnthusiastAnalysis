@@ -1,4 +1,5 @@
 from .utils import print_missing_values
+from . import utils, data_cleaning
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
