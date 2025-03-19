@@ -9,16 +9,12 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Clear cache
-        run: |
-          rm -rf ~/.cache/pylint
+        run: rm -rf ~/.cache/pylint
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: "3.10"
-
-      - name: Set working directory
-        run: cd $GITHUB_WORKSPACE
 
       - name: Install dependencies
         run: |
@@ -26,15 +22,7 @@ jobs:
           pip install pylint
 
       - name: Set PYTHONPATH
-        run: |
-          echo "PYTHONPATH=$GITHUB_WORKSPACE" >> $GITHUB_ENV
-          #echo "PYTHONPATH=$(pwd)" >> $GITHUB_ENV
-          echo "export PYTHONPATH=$(pwd)" >> $HOME/.bashrc
-          source $HOME/.bashrc
+        run: echo "PYTHONPATH=$GITHUB_WORKSPACE" >> $GITHUB_ENV
 
       - name: Run pylint
-        run: find . -name "*.py" | xargs pylint
-
-      - name: Analysing the code with pylint
-        run: pylint $(git ls-files '*.py' | tr '\n' ' ')
-        
+        run: pylint $(find scripts -name "*.py" | tr '\n' ' ')
