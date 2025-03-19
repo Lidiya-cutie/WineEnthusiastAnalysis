@@ -6,9 +6,10 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Clear cache
+      - name: Clear pylint cache
         run: rm -rf ~/.cache/pylint
 
       - name: Set up Python
@@ -22,8 +23,14 @@ jobs:
           pip install pylint
 
       - name: Set PYTHONPATH
-        run: echo "PYTHONPATH=$GITHUB_WORKSPACE" >> $GITHUB_ENV
-      
-      - name: Run pylint
-        run: PYTHONPATH=$PYTHONPATH pylint $(find . -name "*.py" | tr '\n' ' ')
+        run: |
+          echo "PYTHONPATH=$(pwd)" >> $GITHUB_ENV
+          echo "export PYTHONPATH=$(pwd)" >> $HOME/.bashrc
+          source $HOME/.bashrc
 
+      - name: Verify PYTHONPATH
+        run: echo "PYTHONPATH is set to: $PYTHONPATH"
+
+      - name: Run pylint
+        run: |
+          pylint $(find . -name "*.py" | tr '\n' ' ')
