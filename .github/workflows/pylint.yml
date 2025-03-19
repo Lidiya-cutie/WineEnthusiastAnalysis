@@ -29,7 +29,7 @@ jobs:
           source $HOME/.bashrc
 
       - name: Verify PYTHONPATH
-        run: echo "PYTHONPATH is set to: $PYTHONPATH"
+        run: echo "PYTHONPATH=$(pwd)" >> $PYTHONPATH"
 
       - name: Run pylint
         run: |
