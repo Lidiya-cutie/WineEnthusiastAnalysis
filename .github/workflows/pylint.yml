@@ -25,4 +25,4 @@ jobs:
         run: echo "PYTHONPATH=$GITHUB_WORKSPACE" >> $GITHUB_ENV
 
       - name: Run pylint
-        run: pylint $(find scripts -name "*.py" | tr '\n' ' ')
+        run: pylint $(find . -name "*.py" | tr '\n' ' ')
