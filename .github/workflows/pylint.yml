@@ -28,9 +28,6 @@ jobs:
           echo "export PYTHONPATH=$(pwd)" >> $HOME/.bashrc
           source $HOME/.bashrc
 
-      - name: Verify PYTHONPATH
-        run: echo "PYTHONPATH=$(pwd)" >> $PYTHONPATH"
-
       - name: Run pylint
         run: |
           pylint $(find . -name "*.py" | tr '\n' ' ')
