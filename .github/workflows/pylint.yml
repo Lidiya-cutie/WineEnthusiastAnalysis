@@ -29,5 +29,4 @@ jobs:
           source $HOME/.bashrc
 
       - name: Analysing the code with pylint
-        run: |
-          pylint scripts/
+        run: pylint $(git ls-files '*.py' | tr '\n' ' ')
