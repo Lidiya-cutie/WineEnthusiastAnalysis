@@ -27,9 +27,14 @@ jobs:
 
       - name: Set PYTHONPATH
         run: |
-          echo "PYTHONPATH=$(pwd)" >> $GITHUB_ENV
+          echo "PYTHONPATH=$GITHUB_WORKSPACE" >> $GITHUB_ENV
+          #echo "PYTHONPATH=$(pwd)" >> $GITHUB_ENV
           echo "export PYTHONPATH=$(pwd)" >> $HOME/.bashrc
           source $HOME/.bashrc
 
+      - name: Run pylint
+        run: find . -name "*.py" | xargs pylint
+
       - name: Analysing the code with pylint
         run: pylint $(git ls-files '*.py' | tr '\n' ' ')
+        
