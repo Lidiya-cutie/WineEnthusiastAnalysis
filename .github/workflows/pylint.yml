@@ -23,6 +23,7 @@ jobs:
 
       - name: Set PYTHONPATH
         run: echo "PYTHONPATH=$GITHUB_WORKSPACE" >> $GITHUB_ENV
-
+      
       - name: Run pylint
-        run: pylint $(find . -name "*.py" | tr '\n' ' ')
+        run: PYTHONPATH=$PYTHONPATH pylint $(find . -name "*.py" | tr '\n' ' ')
+
